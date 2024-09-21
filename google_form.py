@@ -65,7 +65,6 @@ with st.form(key="Registration"):
     with year:
         year = st.selectbox("Current Year", ["First", "Second", "Third", "Fourth"])
     
-    st.divider()
     email = st.text_input("E-Mail Id")
     st.divider()
     phone = st.text_input("Phone Number")
