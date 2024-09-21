@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
 
-file_path = "C:\\py\\Vedic_Science_Club_Form.xlsx"
-logo_path = "C:\\py\\Club_logo.jpg"
+file_path = "Vedic_Science_Club_Form.xlsx"
+logo_path = "https://www.socet.edu.in/clubs/images/clubs/Vedic.png"
 
 page_bg_img = """
     <style>
@@ -12,7 +12,7 @@ page_bg_img = """
     }
     [data-testid="stAppViewContainer"]
     {
-        background-image: url("https://i.pinimg.com/564x/64/29/69/64296974cc1d2bfbd9a97da5190c75df.jpg");
+        background-image: url("https://i.pinimg.com/564x/2f/0e/d9/2f0ed90001852807625d2f544f3d5512.jpg");
         background-size: auto 100% ;
     }
     </style>
