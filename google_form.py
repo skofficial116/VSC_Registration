@@ -4,6 +4,8 @@ import pandas as pd
 file_path = "Vedic_Science_Club_Form.xlsx"
 logo_path = "https://www.socet.edu.in/clubs/images/clubs/Vedic.png"
 
+st.set_page_config(page_title = "VSC Registrations", layout ='wide')
+
 page_bg_img = """
     <style>
     [data-testid="stHeader"]
