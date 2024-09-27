@@ -2,12 +2,16 @@ import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Set up Google Sheets API credentials
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("key/service_key.json", scope)
+creds_path = os.getenv("GOOGLE_SHEET_KEY")  # Get the path from the environment variable
+creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
 client = gspread.authorize(creds)
-
 # Open your Google Sheet
 sheet = client.open("Vedic_Science_Club_Form").worksheet("Registration")
 
