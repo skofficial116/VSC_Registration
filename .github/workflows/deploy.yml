@@ -1,0 +1,36 @@
+name: Deploy to Google Sheets
+
+on:
+  push:
+    branches:
+      - main  # or the branch you want to trigger the workflow
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    # This step writes the secret to the 'key/service_key.json' file
+    - name: Create service account key from GitHub secret
+      run: |
+        mkdir -p key
+        echo "${{ secrets.GCP_KEY }}" > key/service_key.json
+
+    # Optionally, you can print out a message to confirm the file is created
+    - name: Check if key exists
+      run: |
+        ls key
+        cat key/service_key.json  # Caution: Do not use this in production. It's for debugging.
+
+    # Now, run your Python script
+    - name: Run the Python Script to Interact with Google Sheets
+      run: |
+        python google_form.py
