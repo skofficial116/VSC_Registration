@@ -3,6 +3,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 from dotenv import load_dotenv
+import os  # Add this import
 
 # Load environment variables from .env file
 load_dotenv()
@@ -10,13 +11,19 @@ load_dotenv()
 # Set up Google Sheets API credentials
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 creds_path = os.getenv("GOOGLE_SHEET_KEY")  # Get the path from the environment variable
-creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
-client = gspread.authorize(creds)
-# Open your Google Sheet
-sheet = client.open("Vedic_Science_Club_Form").worksheet("Registration")
+if creds_path:  # Ensure the creds_path is not None
+    creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
+    client = gspread.authorize(creds)
+    # Open your Google Sheet
+    sheet = client.open("Vedic_Science_Club_Form").worksheet("Registration")
+else:
+    st.error("Google Sheets credentials not found. Please check your environment variables.")
 
 # Load existing data from Google Sheet into a DataFrame
 existing_data = pd.DataFrame(sheet.get_all_records())
+
+# Remaining code for your Streamlit page and form handling...
+
 
 # Logo URL
 logo_path = "https://www.socet.edu.in/clubs/images/clubs/Vedic.png"
