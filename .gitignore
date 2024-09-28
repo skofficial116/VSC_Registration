@@ -1,7 +1,0 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-.env
-.DS_Store
